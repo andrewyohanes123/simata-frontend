@@ -14,6 +14,7 @@ import {
   IconLogout,
   IconUser,
   IconFile,
+  IconTower,
 } from "@tabler/icons-react";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "hooks";
@@ -25,7 +26,12 @@ const links: IRoutePath[] = [
   {
     icon: IconFile,
     label: "Dokumen",
-    path: "Dokumen",
+    path: "dokumen",
+  },
+  {
+    icon: IconTower,
+    label: "Infrastruktur",
+    path: "infrastruktur",
   },
 ];
 
@@ -173,7 +179,7 @@ const Sidebar: FC = (): ReactElement => {
     <Navbar width={{ sm: 300 }} className={classes.navbar}>
       <Center pt="md" className={classes.header}>
         <Title color="dark" order={3} className={classes.appName}>
-          Si-Mata
+          Simataruang
         </Title>
       </Center>
       <Navbar.Section component={ScrollArea} p="xs" grow>

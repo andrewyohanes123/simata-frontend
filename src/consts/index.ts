@@ -1,3 +1,97 @@
+import gereja from "assets/icons/GEREJA.png";
+import jalanKota from "assets/icons/JALAN KOTA.png";
+import jalanNegara from "assets/icons/JALAN NEGARA.png";
+import jalanPropinsi from "assets/icons/JALAN PROPINSI.png";
+import wifi from "assets/icons/1001 WIFI.png";
+import bank from "assets/icons/BANK.png";
+import jembatan from "assets/icons/JEMBATAN.png";
+import lampuJalan from "assets/icons/LAMPU JALAN.png";
+import menaraTelekomunikasi from "assets/icons/MENARA TELEKOMUNIKASI.png";
+import mesjid from "assets/icons/MESJID.png";
+import pemkot from "assets/icons/PERKANTORAN PEMKOT BITUNG.png";
+import pemprov from "assets/icons/PERKANTORAN PEMPROV SULUT.png";
+import sabodam from "assets/icons/SABODAM.png";
+import saluranAlur from "assets/icons/SALURAN ALUR.png";
+import saluranOutlet from "assets/icons/SALURAN OUTLET.png";
+import terminal from "assets/icons/TERMINAL.png";
+import rumahTinggal from "assets/icons/RUMAH TINGGAL.png";
+import rukoToko from "assets/icons/TOKO-RUKO.png";
+
+export const mapIcons = [
+  {
+    name: "GEREJA",
+    icon: gereja,
+  },
+  {
+    name: "JALAN KOTA",
+    icon: jalanKota,
+  },
+  {
+    name: "JALAN NEGARA",
+    icon: jalanNegara,
+  },
+  {
+    name: "JALAN PROPINSI",
+    icon: jalanPropinsi,
+  },
+  {
+    name: "1001 WIFI",
+    icon: wifi,
+  },
+  {
+    name: "BANK",
+    icon: bank,
+  },
+  {
+    name: "jembatan",
+    icon: jembatan,
+  },
+  {
+    name: "lampu jalan",
+    icon: lampuJalan,
+  },
+  {
+    name: "menara telekomunikasi",
+    icon: menaraTelekomunikasi,
+  },
+  {
+    name: "mesjid",
+    icon: mesjid,
+  },
+  {
+    name: "PERKANTORAN PEMKOT BITUNG",
+    icon: pemkot,
+  },
+  {
+    name: "PERKANTORAN PEMPROV SULUT",
+    icon: pemprov,
+  },
+  {
+    name: "SABODAM",
+    icon: sabodam,
+  },
+  {
+    name: "SALURAN ALUR",
+    icon: saluranAlur,
+  },
+  {
+    name: "SALURAN OUTLET",
+    icon: saluranOutlet,
+  },
+  {
+    name: "terminal",
+    icon: terminal,
+  },
+  {
+    name: "rumah tinggal",
+    icon: rumahTinggal,
+  },
+  {
+    name: "toko/ruko",
+    icon: rukoToko,
+  },
+];
+
 import {
   IMAGE_MIME_TYPE,
   MIME_TYPES,

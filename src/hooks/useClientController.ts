@@ -4,7 +4,12 @@ import { Application } from "@feathersjs/feathers";
 import feathersJS from "@feathersjs/client";
 import io from "socket.io-client";
 import { useEffect, useState } from "react";
-import { DocumentService, FileService, UserService } from "types/global";
+import {
+  DocumentService,
+  FileService,
+  InfraService,
+  UserService,
+} from "types/global";
 // import authentication from "@feathersjs/authentication-client";
 
 const REACT_APP_BASEURL: string = import.meta.env.VITE_APP_BASEURL;
@@ -16,7 +21,7 @@ const timeout = 60 * 3 * 1000;
 const featherAuth = feathersJS.authentication({
   // jwtStrategy: "local",
   // storage: window.localStorage,
-  storageKey: 'accessToken',
+  storageKey: "accessToken",
 });
 
 feathers.configure(feathersJS.socketio(socket, { timeout }));
@@ -49,6 +54,7 @@ export interface ServiceTypes {
   users: UserService;
   documents: DocumentService;
   files: FileService;
+  infras: InfraService;
 }
 
 export interface ClientControllerResult {

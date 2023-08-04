@@ -2,6 +2,7 @@
 import { TablerIconProps } from "@tabler/icons-react";
 import { FC } from "react";
 import { Application, Params, Id, NullableId } from "@feathersjs/feathers";
+import { Geometry, FeatureCollection } from "geojson";
 
 export type TStatsData = {
   label: string;
@@ -174,6 +175,31 @@ export interface IRouteGroup {
   icon: FC<TablerIconProps>;
 }
 
+// export type Feature = {
+//   geometry: Geometry;
+//   type: "Feature";
+// };
+
+// export interface InfrastructureFeatureCollection {
+//   features: Feature[];
+//   type: "FeatureCollection";
+// }
+export type InfraProperties = {
+  alamat_lengkap: string;
+  flg: string;
+  foto_cover: string;
+  gps_lat: number;
+  gps_lng: number;
+  gps_tipe: string;
+  id_infra: number;
+  id_jenis: number;
+  id_kelurahan: number;
+  nama_infra: string;
+  nama_jenis: string;
+  no_rt: string;
+  no_rw: string;
+  no_telp: string;
+};
 export type FileWithProgress = { progress: number; file: File };
 
 export type ExcludeAttributes<
@@ -195,3 +221,8 @@ interface BaseService<T extends BaseAttributes> {
 export type UserService = BaseService<UserAttributes>;
 export type DocumentService = BaseService<DocumentAttributes>;
 export type FileService = BaseService<FileAttributes>;
+export type InfraService = {
+  find: (
+    params: Params
+  ) => Promise<FeatureCollection<Geometry, InfraProperties>>;
+};

@@ -15,6 +15,7 @@ import { errorCatch } from "modules/errorCatch.tsx";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Notifications } from "@mantine/notifications";
 import { ModalsProvider } from "@mantine/modals";
+import "mapbox-gl/dist/mapbox-gl.css";
 
 const theme: MantineThemeOverride = {
   fontFamily: "Barlow, sans-serif",
