@@ -6,6 +6,7 @@ import {
   TextInput,
   Button,
   PasswordInput,
+  Divider,
 } from "@mantine/core";
 import { useForm, yupResolver } from "@mantine/form";
 import * as yup from "yup";
@@ -91,10 +92,11 @@ const Layout: FC = (): ReactElement => {
               // className={classes.link}
               to="/"
               type="button"
-              mb="md"
+              variant="subtle"
             >
               Kembali ke Peta
             </Button>
+            <Divider my="md" />
             <TextInput
               label="Username"
               {...form.getInputProps("username")}
