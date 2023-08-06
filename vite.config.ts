@@ -1,7 +1,8 @@
-import { defineConfig } from "vite";
+import { defineConfig, splitVendorChunkPlugin } from "vite";
 import react from "@vitejs/plugin-react";
 import unfonts from "unplugin-fonts/vite";
 import tsConfigPaths from "vite-tsconfig-paths";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import eslint from "vite-plugin-eslint";
 
@@ -11,6 +12,7 @@ export default defineConfig({
     react(),
     eslint(),
     tsConfigPaths(),
+    splitVendorChunkPlugin(),
     unfonts({
       custom: {
         prefetch: true,
