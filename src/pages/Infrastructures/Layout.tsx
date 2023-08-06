@@ -4,8 +4,17 @@ import { mapIcons } from "consts";
 import { useClient } from "hooks/useClient";
 import { useMap } from "hooks/useMap";
 import { hoverableLayer, mapImageLoader } from "modules";
-import { FC, ReactElement, useCallback, useEffect, useRef } from "react";
+import {
+  FC,
+  ReactElement,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+} from "react";
 import { When } from "react-if";
+import PointFilter from "./PointFilter";
+import { useSearchParams } from "react-router-dom";
 
 const useStyles = createStyles(() => ({
   mapContainer: {
@@ -31,9 +40,7 @@ const Layout: FC = (): ReactElement => {
   const infras = useQuery({
     queryKey: ["infras"],
     queryFn: () => client.service("infras").find({}),
-    onSuccess(data) {
-      console.log(data);
-    },
+    refetchOnWindowFocus: false,
   });
   const mapLoaded = useRef<boolean>(false);
 
@@ -88,11 +95,16 @@ const Layout: FC = (): ReactElement => {
               "#2d3436",
             ],
           },
+          // layout: {
+          // }
         });
       }
     }
   }, [infras.data, map, theme.colors.pink]);
   const hoveredContentId = useRef<string | null>(null);
+
+  const [searchParams] = useSearchParams();
+  const infraFilter = useMemo(() => searchParams.get("filter"), [searchParams]);
 
   useEffect(() => {
     if (typeof map !== "undefined") {
@@ -126,14 +138,26 @@ const Layout: FC = (): ReactElement => {
           }
         });
       };
+
       map.on("load", mapInit);
-      if (mapLoaded.current) updateMap();
+      if (mapLoaded.current) {
+        if (infraFilter !== null) {
+          map.setFilter("infra-layer", ["in", "nama_jenis", infraFilter]);
+        } else {
+          map.setFilter("infra-layer", [
+            "in",
+            "nama_jenis",
+            ...mapIcons.map((icon) => icon.name.toUpperCase()),
+          ]);
+        }
+        updateMap();
+      }
 
       return () => {
         map.off("load", mapInit);
       };
     }
-  }, [map, updateMap]);
+  }, [infraFilter, map, updateMap]);
 
   return (
     <Box className={classes.wrapper}>
@@ -145,6 +169,7 @@ const Layout: FC = (): ReactElement => {
           </Group>
         </Overlay>
       </When>
+      <PointFilter />
       <Box key="infras" className={classes.mapContainer} ref={mapContainer} />
     </Box>
   );
