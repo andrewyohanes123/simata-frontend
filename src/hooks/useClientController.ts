@@ -8,6 +8,7 @@ import {
   DocumentService,
   FileService,
   InfraService,
+  LandUseService,
   UserService,
 } from "types/global";
 // import authentication from "@feathersjs/authentication-client";
@@ -55,6 +56,7 @@ export interface ServiceTypes {
   documents: DocumentService;
   files: FileService;
   infras: InfraService;
+  landuse: LandUseService;
 }
 
 export interface ClientControllerResult {

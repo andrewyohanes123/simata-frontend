@@ -200,6 +200,19 @@ export type InfraProperties = {
   no_rw: string;
   no_telp: string;
 };
+
+export type LandUseProperties = {
+  Area: number;
+  DPCLS: string | null;
+  Hectares: number;
+  KAWASAN_LI: number;
+  KH_UPDATE: string | null;
+  Keterangan: string | null;
+  POLA_RUANG: number;
+  SK_434: string | null;
+  Sumber: string | null;
+};
+
 export type FileWithProgress = { progress: number; file: File };
 
 export type ExcludeAttributes<
@@ -225,4 +238,9 @@ export type InfraService = {
   find: (
     params: Params
   ) => Promise<FeatureCollection<Geometry, InfraProperties>>;
+};
+export type LandUseService = {
+  find: (
+    params: Params
+  ) => Promise<FeatureCollection<Geometry, LandUseProperties>>;
 };

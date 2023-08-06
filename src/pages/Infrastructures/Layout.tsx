@@ -1,16 +1,21 @@
-import { Box, createStyles } from "@mantine/core";
+import { Box, Group, Loader, Overlay, createStyles, Text } from "@mantine/core";
 import { useQuery } from "@tanstack/react-query";
-import { PageContainer } from "components";
 import { mapIcons } from "consts";
 import { useClient } from "hooks/useClient";
 import { useMap } from "hooks/useMap";
 import { hoverableLayer, mapImageLoader } from "modules";
 import { FC, ReactElement, useCallback, useEffect, useRef } from "react";
+import { When } from "react-if";
 
 const useStyles = createStyles(() => ({
   mapContainer: {
     width: "100%",
     height: "100%",
+  },
+  wrapper: {
+    width: "100%",
+    height: "100%",
+    position: "relative",
   },
 }));
 
@@ -90,7 +95,7 @@ const Layout: FC = (): ReactElement => {
   const hoveredContentId = useRef<string | null>(null);
 
   useEffect(() => {
-    if (typeof map !== "undefined" && typeof infras.data !== "undefined") {
+    if (typeof map !== "undefined") {
       const mapInit = () => {
         console.log("map loaded");
         updateMap();
@@ -128,12 +133,20 @@ const Layout: FC = (): ReactElement => {
         map.off("load", mapInit);
       };
     }
-  }, [infras.data, map, updateMap]);
+  }, [map, updateMap]);
 
   return (
-    <PageContainer h={"100%"} p={0} title="Peta Infrastruktur">
-      <Box className={classes.mapContainer} ref={mapContainer} />
-    </PageContainer>
+    <Box className={classes.wrapper}>
+      <When condition={infras.isLoading && typeof infras.data === "undefined"}>
+        <Overlay blur={10} opacity={0.5} color="#fff" center>
+          <Group spacing="sm">
+            <Loader />
+            <Text>Loading data pola ruang</Text>
+          </Group>
+        </Overlay>
+      </When>
+      <Box key="infras" className={classes.mapContainer} ref={mapContainer} />
+    </Box>
   );
 };
 

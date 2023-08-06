@@ -13,6 +13,7 @@ import { useAuth } from "hooks";
 import { Link, Navigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { AuthenticationResult } from "@feathersjs/authentication/lib";
+import { IconChevronLeft } from "@tabler/icons-react";
 
 const useStyles = createStyles((theme) => ({
   loginContainer: {
@@ -80,35 +81,47 @@ const Layout: FC = (): ReactElement => {
   if (isLoggedIn) return <Navigate to="/dashboard" />;
 
   return (
-    <Center className={classes.loginContainer}>
-      <Center className={classes.formContainer}>
-        <Box component="form" onSubmit={form.onSubmit(login)} w="100%">
-          <TextInput
-            label="Username"
-            {...form.getInputProps("username")}
-            placeholder="Username"
-            disabled={loginMutation.isLoading}
-          />
-          <PasswordInput
-            label="Password"
-            {...form.getInputProps("password")}
-            placeholder="Password"
-            disabled={loginMutation.isLoading}
-          />
-          <Link className={classes.link} to="/daftar">
-            Belum Punya Pengguna? Silakan Daftar
-          </Link>
-          <Button
-            loading={loginMutation.isLoading}
-            mt="md"
-            type="submit"
-            fullWidth
-          >
-            Login
-          </Button>
-        </Box>
+    <>
+      <Center className={classes.loginContainer}>
+        <Center className={classes.formContainer}>
+          <Box component="form" onSubmit={form.onSubmit(login)} w="100%">
+            <Button
+              component={Link}
+              leftIcon={<IconChevronLeft />}
+              // className={classes.link}
+              to="/"
+              type="button"
+              mb="md"
+            >
+              Kembali ke Peta
+            </Button>
+            <TextInput
+              label="Username"
+              {...form.getInputProps("username")}
+              placeholder="Username"
+              disabled={loginMutation.isLoading}
+            />
+            <PasswordInput
+              label="Password"
+              {...form.getInputProps("password")}
+              placeholder="Password"
+              disabled={loginMutation.isLoading}
+            />
+            <Link className={classes.link} to="/daftar">
+              Belum Punya Pengguna? Silakan Daftar
+            </Link>
+            <Button
+              loading={loginMutation.isLoading}
+              mt="md"
+              type="submit"
+              fullWidth
+            >
+              Login
+            </Button>
+          </Box>
+        </Center>
       </Center>
-    </Center>
+    </>
   );
 };
 

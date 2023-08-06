@@ -99,6 +99,7 @@ import {
   MS_POWERPOINT_MIME_TYPE,
   MS_WORD_MIME_TYPE,
 } from "@mantine/dropzone";
+import mapboxgl from "mapbox-gl";
 
 export const mimeFileType = {
   "application/pdf": "PDF",
@@ -118,3 +119,37 @@ export const acceptedMimes = [
   ...MS_POWERPOINT_MIME_TYPE,
   ...MS_WORD_MIME_TYPE,
 ].join(",");
+
+export const landuseColors: mapboxgl.Expression = [
+  'match',
+  ['get', 'POLA_RUANG'],
+  'Cagar Alam', '#16a085',
+  'Global Hub Port (Terminal-1) Bitung', '#3498db',
+  'Global Hub Port (Terminal-1) P.Lembeh', '#2980b9',
+  'Global Hub Port (Terminal-2)', '#2980b9',
+  'Holding Zone', '#f1c40f',
+  'Kawasan Hutan Lindung', '#2ecc71',
+  'Kawasan Hutan Rakyat', '#27ae60',
+  'Kawasan Hutan Wisata', '#78e08f',
+  'Kawasan Industri', '#82ccdd',
+  'Kawasan Pantai Berhutan Bakau', '#079992',
+  'Kawasan Wilayah Pesisir dan Pulau Kecil', '#00a8ff',
+  'Pariwisata', '#fbc531',
+  'Pelabuhan/Terminal Khusus', '#00b894',
+  'Pelayanan Umum', '#d63031',
+  'Pendidikan', '#ff4757',
+  'Perdagangan dan Jasa', '#2d3436',
+  'Perkantoran', '#EA2027',
+  'Pertahanan dan Keamanan', '#009432',
+  'Pertambangan', '#3d3d3d',
+  'Pertanian/Perkebunan', '#32ff7e',
+  'Perumahan', '#7d5fff',
+  'Resapan Air', '#7efff5',
+  'RTH', '#7158e2',
+  'Sempadan Sungai dan Pantai', '#18dcff',
+  'Suaka Alam Laut', '#17c0eb',
+  'Terminal', '#ff793f',
+  'TWA Batu Angus', '#33d9b2',
+  'TWA Batu Putih', '#34ace0',
+  '#ff5252'
+]

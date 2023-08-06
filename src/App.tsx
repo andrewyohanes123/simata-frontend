@@ -1,5 +1,6 @@
 import { LoadingScreen } from "components";
 import { useAuth, useCheckConnection } from "hooks";
+// import LandUse from "pages/LandUse";
 import { FC, ReactElement, Suspense, lazy, useEffect } from "react";
 import { Else, If, Then, When } from "react-if";
 import { RouterProvider, createHashRouter } from "react-router-dom";
@@ -7,15 +8,21 @@ import { RouterProvider, createHashRouter } from "react-router-dom";
 const Dashboard = lazy(() => import("pages/Dashboard"));
 const Login = lazy(() => import("pages/Login"));
 const Register = lazy(() => import("pages/Register"));
+const LandUse = lazy(() => import("pages/Home"));
 
 const router = createHashRouter([
   {
-    index: true,
+    path: "login",
     element: <Login />,
   },
   {
     path: "daftar",
     element: <Register />,
+  },
+  {
+    // path: "landuse",
+    index: true,
+    element: <LandUse />,
   },
   {
     path: "dashboard/*",

@@ -86,7 +86,7 @@ interface props extends Pick<CSSProperties, "justifyContent" | "alignItems"> {
   pr?: MantineSize;
   pl?: MantineSize;
   children?: ReactNode;
-  spacing?: number;
+  spacing?: number | string;
   flex?: number;
   className?: string;
 }

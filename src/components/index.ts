@@ -8,3 +8,4 @@ export { default as ErrorScreen } from "./ErrorScreen";
 export { default as SearchBar } from "./atoms/SearchBar";
 export { default as UploadOverlay } from "./UploadOverlay";
 export { default as TextWithLabel } from "./atoms/TextWithLabel";
+export { default as Navbar } from "./Navbar";
