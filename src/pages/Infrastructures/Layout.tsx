@@ -11,10 +11,12 @@ import {
   useEffect,
   useMemo,
   useRef,
+  useState,
 } from "react";
 import { When } from "react-if";
 import PointFilter from "./PointFilter";
 import { useSearchParams } from "react-router-dom";
+import InfrasTotal from "./InfrasTotal";
 
 const useStyles = createStyles(() => ({
   mapContainer: {
@@ -43,6 +45,18 @@ const Layout: FC = (): ReactElement => {
     refetchOnWindowFocus: false,
   });
   const mapLoaded = useRef<boolean>(false);
+  const [searchParams] = useSearchParams();
+  const infraFilter = useMemo(() => searchParams.get("filter"), [searchParams]);
+  const [filteredTotal, setFilteredtotal] = useState<number>(0);
+
+  useEffect(() => {
+    if (typeof infras.data !== "undefined" && infraFilter !== null) {
+      const total = infras.data.features.filter(
+        (feature) => feature.properties.nama_jenis === infraFilter
+      );
+      setFilteredtotal(total.length);
+    }
+  }, [infraFilter, infras.data]);
 
   const updateMap = useCallback(() => {
     if (typeof map !== "undefined" && typeof infras.data !== "undefined") {
@@ -103,9 +117,6 @@ const Layout: FC = (): ReactElement => {
   }, [infras.data, map, theme.colors.pink]);
   const hoveredContentId = useRef<string | null>(null);
 
-  const [searchParams] = useSearchParams();
-  const infraFilter = useMemo(() => searchParams.get("filter"), [searchParams]);
-
   useEffect(() => {
     if (typeof map !== "undefined") {
       const mapInit = () => {
@@ -140,9 +151,10 @@ const Layout: FC = (): ReactElement => {
       };
 
       map.on("load", mapInit);
-      if (mapLoaded.current) {
+      if (mapLoaded.current && typeof infras.data !== "undefined") {
         if (infraFilter !== null) {
           map.setFilter("infra-layer", ["in", "nama_jenis", infraFilter]);
+          // const filteredFeatures = getUniqueFeatures(features, "id_infra");
         } else {
           map.setFilter("infra-layer", [
             "in",
@@ -157,7 +169,7 @@ const Layout: FC = (): ReactElement => {
         map.off("load", mapInit);
       };
     }
-  }, [infraFilter, map, updateMap]);
+  }, [infraFilter, infras.data, map, updateMap]);
 
   return (
     <Box className={classes.wrapper}>
@@ -170,6 +182,7 @@ const Layout: FC = (): ReactElement => {
         </Overlay>
       </When>
       <PointFilter />
+      {infraFilter !== null && <InfrasTotal total={filteredTotal} />}
       <Box key="infras" className={classes.mapContainer} ref={mapContainer} />
     </Box>
   );

@@ -1,5 +1,5 @@
 import { FC, ReactElement, useCallback } from "react";
-import { Select, createStyles } from "@mantine/core";
+import { Group, Select, Text, createStyles } from "@mantine/core";
 import { mapIcons } from "consts";
 import { IconFilter } from "@tabler/icons-react";
 import { useSearchParams } from "react-router-dom";
@@ -22,30 +22,35 @@ const useStyles = createStyles((theme) => ({
 const pointTypes = mapIcons.map((icon) => icon.name.toUpperCase()).sort();
 
 const PointFilter: FC = (): ReactElement => {
-  const [searchParams, setSearchParams ] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const onChangeSelect = useCallback((val: string | null) => {
-    if (val !== null) {
-      searchParams.set('filter', val)
-    } else {
-      searchParams.delete('filter')
-    }
-    setSearchParams(searchParams);
-  }, [searchParams, setSearchParams]);
+  const onChangeSelect = useCallback(
+    (val: string | null) => {
+      if (val !== null) {
+        searchParams.set("filter", val);
+      } else {
+        searchParams.delete("filter");
+      }
+      setSearchParams(searchParams);
+    },
+    [searchParams, setSearchParams]
+  );
 
   const { classes } = useStyles();
   return (
-    <div className={classes.wrapper}>
+    <Group spacing="xs" className={classes.wrapper}>
+      <IconFilter />
+      <Text>Filter</Text>
       <Select
+        zIndex={12}
         data={pointTypes}
         placeholder="Filter"
         searchable
         clearable
         onChange={onChangeSelect}
-        value={searchParams.get('filter')}
-        icon={<IconFilter />}
+        value={searchParams.get("filter")}
       />
-    </div>
+    </Group>
   );
 };
 

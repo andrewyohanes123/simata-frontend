@@ -1872,6 +1872,13 @@
   resolved "https://registry.yarnpkg.com/@types/socket.io-client/-/socket.io-client-1.4.36.tgz#e4f1ca065f84c20939e9850e70222202bd76ff3f"
   integrity sha512-ZJWjtFBeBy1kRSYpVbeGYTElf6BqPQUkXDlHHD4k/42byCN5Rh027f4yARHCink9sKAkbtGZXEAmR0ZCnc2/Ag==
 
+"@types/turf@^3.5.32":
+  version "3.5.32"
+  resolved "https://registry.yarnpkg.com/@types/turf/-/turf-3.5.32.tgz#15b39ad94e9b5c00e9e0ad97e9987253b5302b69"
+  integrity sha512-2Rtv0EIG7Tx1CC2ASzCPw63ugCwrqJCFqNL/Gk9QYE5iIyd+0/S/TlPTgQ+qeQC8NCEn/TncUeZp+aM9cg68rg==
+  dependencies:
+    "@types/geojson" "*"
+
 "@typescript-eslint/eslint-plugin@^5.5.0", "@typescript-eslint/eslint-plugin@^5.57.1":
   version "5.59.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-5.59.0.tgz#c0e10eeb936debe5d1c3433cf36206a95befefd0"

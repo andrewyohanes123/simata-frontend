@@ -51,4 +51,17 @@ export default defineConfig({
       },
     }),
   ],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          yup: ["yup"],
+          icons: ["@tabler/icons-react"],
+          react: ["react"],
+          mantine: ["@mantine/core", "@mantine/form"],
+          mapbox: ["mapbox-gl"],
+        },
+      },
+    },
+  },
 });

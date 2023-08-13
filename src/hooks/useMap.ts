@@ -48,6 +48,7 @@ export const useMap = ({
         attributionControl: false,
         pitch,
         bearing,
+        interactive: true
       });
       mapInstance.addControl(new mapboxgl.ScaleControl(), "bottom-left");
       mapInstance.addControl(new mapboxgl.NavigationControl(), "bottom-left");
